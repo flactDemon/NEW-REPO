@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, DollarSign, PieChart, Info } from 'lucide-react';
 
 export default function Market() {
-  const marketData = [
-    { crop: 'Wheat', currentPrice: '₹2,350 / quintal', trend: 'up', change: '+2.5%' },
-    { crop: 'Rice (Basmati)', currentPrice: '₹3,800 / quintal', trend: 'up', change: '+1.2%' },
-    { crop: 'Tomato', currentPrice: '₹1,200 / quintal', trend: 'down', change: '-5.0%' },
-    { crop: 'Onion', currentPrice: '₹1,500 / quintal', trend: 'up', change: '+8.4%' },
-  ];
+  const [marketData, setMarketData] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/market')
+      .then(res => res.json())
+      .then(data => setMarketData(data))
+      .catch(err => console.error("Failed to fetch market data", err));
+  }, []);
 
   return (
     <div>

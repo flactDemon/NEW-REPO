@@ -89,7 +89,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <li><button onClick={() => { setShowProfile(false); navigate('/my-farm'); }} style={{ background:'none',border:'none',textAlign:'left',width:'100%',padding:'0.25rem 0',color: 'var(--text-main)', fontSize: '0.9rem', cursor:'pointer' }}>Edit Farm Details</button></li>
                 <li><button onClick={() => { setShowProfile(false); alert('Premium plans are coming soon! Stay tuned.'); }} style={{ background:'none',border:'none',textAlign:'left',width:'100%',padding:'0.25rem 0',color: 'var(--text-main)', fontSize: '0.9rem', cursor:'pointer' }}>Upgrade to Premium</button></li>
-                <li><button onClick={() => { setShowProfile(false); alert('Logged out successfully.'); navigate('/dashboard'); }} style={{ background:'none',border:'none',textAlign:'left',width:'100%',color: 'var(--danger)', fontSize: '0.9rem', fontWeight: 600, marginTop: '0.5rem', paddingTop: '0.5rem', borderTop: '1px solid var(--border-color)', cursor:'pointer' }}>Log Out</button></li>
+                <li><button onClick={() => { setShowProfile(false); navigate('/login'); }} style={{ background:'none',border:'none',textAlign:'left',width:'100%',color: 'var(--danger)', fontSize: '0.9rem', fontWeight: 600, marginTop: '0.5rem', paddingTop: '0.5rem', borderTop: '1px solid var(--border-color)', cursor:'pointer' }}>Log Out</button></li>
               </ul>
             </div>
           )}

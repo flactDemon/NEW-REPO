@@ -6,21 +6,20 @@ export default function Dashboard() {
   const [editingLoc, setEditingLoc] = useState(false);
   const [weather, setWeather] = useState({ temp: 24, condition: 'Light Rain', humidity: 78, tomorrow: 28, day3: 23, day4: 29 });
 
-  // Simulate updating weather when location changes
+  // Fetch real weather data when location changes
   useEffect(() => {
-    const hash = location.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    const newTemp = 20 + (hash % 15); // Random temp between 20 and 34
-    const conditions = ['Light Rain', 'Sunny', 'Cloudy', 'Clear', 'Thunderstorm'];
-    const newCondition = conditions[hash % conditions.length];
-    
-    setWeather({
-      temp: newTemp,
-      condition: newCondition,
-      humidity: 50 + (hash % 40),
-      tomorrow: newTemp + (hash % 5),
-      day3: newTemp - (hash % 4),
-      day4: newTemp + (hash % 3),
-    });
+    const fetchWeather = async () => {
+      try {
+        const res = await fetch(`/api/weather?location=${encodeURIComponent(location)}`);
+        if (res.ok) {
+          const data = await res.json();
+          setWeather(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch weather data", err);
+      }
+    };
+    fetchWeather();
   }, [location]);
 
   return (
