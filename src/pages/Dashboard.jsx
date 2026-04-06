@@ -1,8 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { CloudRain, Sun, Cloud, Thermometer, Droplets, Activity, AlertCircle, CheckCircle2, Edit2 } from 'lucide-react';
 
+const INDIAN_LOCATIONS = [
+  "Pune, Maharashtra",
+  "Mumbai, Maharashtra",
+  "Nashik, Maharashtra",
+  "Nagpur, Maharashtra",
+  "Ahmedabad, Gujarat",
+  "Surat, Gujarat",
+  "Jaipur, Rajasthan",
+  "Jodhpur, Rajasthan",
+  "Ludhiana, Punjab",
+  "Amritsar, Punjab",
+  "Chandigarh",
+  "Lucknow, Uttar Pradesh",
+  "Kanpur, Uttar Pradesh",
+  "Varanasi, Uttar Pradesh",
+  "Bhopal, Madhya Pradesh",
+  "Indore, Madhya Pradesh",
+  "Patna, Bihar",
+  "Kolkata, West Bengal",
+  "Guwahati, Assam",
+  "Hyderabad, Telangana",
+  "Bengaluru, Karnataka",
+  "Mysuru, Karnataka",
+  "Chennai, Tamil Nadu",
+  "Coimbatore, Tamil Nadu",
+  "Kochi, Kerala",
+  "Thiruvananthapuram, Kerala",
+  "New Delhi, Delhi"
+];
+
 export default function Dashboard() {
-  const [location, setLocation] = useState('Pune, MH');
+  const [location, setLocation] = useState('Pune, Maharashtra');
   const [editingLoc, setEditingLoc] = useState(false);
   const [weather, setWeather] = useState({ temp: 24, condition: 'Light Rain', humidity: 78, tomorrow: 28, day3: 23, day4: 29 });
 
@@ -35,15 +65,17 @@ export default function Dashboard() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
             <h3 style={{ margin: 0 }}>Weather Forecast</h3>
             {editingLoc ? (
-              <input 
-                type="text" 
+              <select 
                 value={location} 
-                onChange={(e) => setLocation(e.target.value)} 
+                onChange={(e) => { setLocation(e.target.value); setEditingLoc(false); }} 
                 onBlur={() => setEditingLoc(false)}
-                onKeyDown={(e) => e.key === 'Enter' && setEditingLoc(false)}
                 autoFocus
-                style={{ padding: '0.2rem 0.5rem', borderRadius: '8px', border: '1px solid var(--primary)', outline: 'none', width: '120px' }}
-              />
+                style={{ padding: '0.2rem 0.5rem', borderRadius: '8px', border: '1px solid var(--primary)', outline: 'none', background: 'white' }}
+              >
+                {INDIAN_LOCATIONS.map(loc => (
+                  <option key={loc} value={loc}>{loc}</option>
+                ))}
+              </select>
             ) : (
               <span 
                 onClick={() => setEditingLoc(true)}

@@ -56,7 +56,7 @@ export default function Header({ toggleSidebar }) {
         </button>
         <div>
           <h1 style={{ fontSize: '1.25rem', margin: 0, display: window.innerWidth > 768 ? 'block' : 'none' }}>
-            Welcome back, Aniket! 👋
+            Welcome back, Farmer Ramesh! 👋
           </h1>
         </div>
       </div>

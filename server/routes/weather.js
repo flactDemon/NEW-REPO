@@ -16,7 +16,8 @@ const getWeatherCondition = (code) => {
 router.get('/', async (req, res) => {
   const { location } = req.query;
   try {
-    const geoResponse = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(location || 'Pune')}&count=1`);
+    const cityName = (location || 'Pune').split(',')[0].trim();
+    const geoResponse = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=1`);
     const geoData = await geoResponse.json();
     
     if (!geoData.results || geoData.results.length === 0) {
