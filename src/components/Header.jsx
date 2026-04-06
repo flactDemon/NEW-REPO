@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Header({ toggleSidebar }) {
   const navigate = useNavigate();
   const [isListening, setIsListening] = useState(false);
+  const userName = localStorage.getItem('userName') || 'Farmer Ramesh';
 
   const startVoiceCommand = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -56,7 +57,7 @@ export default function Header({ toggleSidebar }) {
         </button>
         <div>
           <h1 style={{ fontSize: '1.25rem', margin: 0, display: window.innerWidth > 768 ? 'block' : 'none' }}>
-            Welcome back, Farmer Ramesh! 👋
+            Welcome back, {userName}! 👋
           </h1>
         </div>
       </div>

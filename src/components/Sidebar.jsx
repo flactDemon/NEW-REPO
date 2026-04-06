@@ -5,6 +5,8 @@ import { LayoutDashboard, Leaf, Microscope, Sprout, LineChart, Headset, X } from
 export default function Sidebar({ isOpen, setIsOpen }) {
   const [showProfile, setShowProfile] = useState(false);
   const navigate = useNavigate();
+  const userName = localStorage.getItem('userName') || 'Farmer Ramesh';
+  const initial = userName.charAt(0).toUpperCase();
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Crop Recommendation', path: '/crop-ai', icon: Leaf },
@@ -100,10 +102,10 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             onMouseLeave={(e) => Object.assign(e.currentTarget.style, { background: showProfile ? 'rgba(0,0,0,0.03)' : 'transparent' })}
           >
             <div style={{ width: '40px', height: '40px', borderRadius: '20px', background: 'var(--secondary-light)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <strong style={{ color: 'var(--secondary-hover)' }}>F</strong>
+              <strong style={{ color: 'var(--secondary-hover)' }}>{initial}</strong>
             </div>
             <div>
-              <div style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-main)' }}>Farmer Ramesh</div>
+              <div style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-main)' }}>{userName}</div>
               <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>Free Plan</div>
             </div>
           </button>

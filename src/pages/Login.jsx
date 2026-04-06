@@ -7,7 +7,10 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Mock login step, simply navigate to dashboard
+    const nameInput = e.target.elements.name.value;
+    if (nameInput) {
+      localStorage.setItem('userName', nameInput);
+    }
     navigate('/dashboard');
   };
 
@@ -44,6 +47,11 @@ export default function Login() {
           <p className="text-muted" style={{ marginBottom: '2rem' }}>Login to access your farm dashboard.</p>
 
           <form onSubmit={handleLogin}>
+            <div className="input-group" style={{ marginBottom: '1.5rem' }}>
+              <label className="input-label">Full Name</label>
+              <input type="text" name="name" className="input-field" style={{ width: '100%' }} placeholder="Enter your name" required />
+            </div>
+            
             <div className="input-group">
               <label className="input-label">Mobile Number or Email</label>
               <div style={{ position: 'relative' }}>
